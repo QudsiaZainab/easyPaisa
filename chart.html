@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Line Chart with Y-Axis Scale</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart" width="400" height="300"></canvas>
+    <script>
+        var data = {
+            labels: [
+                "00:00", "00:01", "00:02", "00:03", "00:04", "00:05", "00:06", "00:07", "00:08",
+                "00:09", "00:10", "00:11", "00:12", "00:13", "00:14", "00:15", "00:16", "00:17", "00:18", "00:19", "00:20", "00:21"
+            ],
+            datasets: [{
+                label: 'Data Points',
+                data: [3250, 5900, 1900, 2900, 4100, 4500, 8600, 0, 700, 400, 1000, 8400, 10700, 7300, 0, 0, 0, 0, 0, 0, 0, 0],
+                borderColor: 'blue',
+                backgroundColor: 'rgba(0, 0, 255, 0.2)', // Fill color
+                fill: true // Fill the area under the line
+            }]
+        };
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Y-Axis Title'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 12000,
+                            stepSize: 500
+                        },
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'X-Axis Title'
+                        },
+                        grid: {
+                            display: false // Set display to false to hide X-axis grid lines
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

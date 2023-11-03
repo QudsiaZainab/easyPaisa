@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <script src = "script.js"></script>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="">
+        <div id="header-buttons">
+            <button>Dispute</button>
+            <button>Queue</button>
+            <button>Transaction History</button>
+            <button>Configuration</button>
+            <button>Account Settings</button>
+            <button>Guide to Integration</button>
+            <button>Settlement Module</button>
+            <button>Reversal Module</button>
+            <button>Merchant Funds Transfer</button>
+        </div>
+
+    </header>
+    <div id = "easy-top">
+        <div class="menu-btn ndisplay" onclick="toggleSidebar()" style = "margin: 5px 5px 0 0">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div id="welcome-row">
+            Welcome Irfan Saleem
+        </div>
+        
+    </div>
+    <div class="sidebar" id="sidebar" style = "background-color: rgb(236, 236, 236);">
+        <div class="close-btn" onclick="toggleSidebar()">&times;</div>
+        <!-- Sidebar content here -->
+        <div id = "btn-menu-box" style = "background-color: rgb(236, 236, 236);">
+            <div class = "menu-item"><a href = "">Dispute</a></div>
+            <div class = "menu-item"><a href = "">Queue</a></div>
+            <div class = "menu-item"><a href = "">Transaction History</a></div>
+            <div class = "menu-item"><a href = "">Configuration</a></div>
+            <div class = "menu-item"><a href = "">Account Settings</a></div>
+            <div class = "menu-item"><a href = "">Guide to Integration</a></div>
+            <div class = "menu-item"><a href = "">Settlement Module</a></div>
+            <div class = "menu-item"><a href = "">Reversal Module</a></div>
+            <div class = "menu-item"><a href = "">Merchant Funds Transfer</a></div>
+        </div>
+    </div>
+    <div id="bt-welcome">
+        <div>
+        </div>
+        <img src="welcome img.png" alt="">
+        <div id="acc-btns">
+            <button id="bt-1">Home</button>
+            <button id="bt-2">Logout</button>
+            <button id="bt-3">Profile</button>
+
+        </div>
+    </div>
+    <div id="balance-row">
+        <div id="balance">
+            <p>PKR 136,097.01</p>
+            <P>Mobile Account Balance</P>
+        </div>
+    </div>
+    <div id="graph-input">
+        <div id="graph-type">
+            <label>Graph Type:</label>
+            <select name="Graph">
+                <option value="transactions-volume">Transactions Volume</option>
+                <option value="banana">Transactions Volume</option>
+                <option value="orange">Transactions Volume</option>
+                <option value="strawberry">Transactions Volume</option>
+            </select>
+        </div>
+        <div id="graph-duration">
+            <label>Graph Duration:</label>
+            <div id="graph-duration-inputs">
+                <div class="radio-input">
+                    <input type="radio" name="graph-duration" value="daily" id="daily">
+                    <label for="daily">Daily</label>
+                </div>
+                <div class="radio-input">
+                    <input type="radio" name="graph-duration" value="weekly" id="weekly">
+                    <label for="weekly">Weekly</label>
+                </div>
+                <div class="radio-input">
+                    <input type="radio" name="graph-duration" value="monthly" id="monthly">
+                    <label for="monthly">Monthly</label>
+                </div>
+                <div class="radio-input">
+                    <input type="radio" name="graph-duration" value="yearly" id="yearly">
+                    <label for="yearly">Yearly</label>
+                </div>
+                <div class="radio-input">
+                    <input type="radio" name="graph-duration" value="custom" id="custom">
+                    <label for="custom">Custom</label>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="generate-btn">
+        <button>Generate</button>
+    </div>
+    <div id="tr-v " style = "background-color: green; display: flex">
+        <i style="margin-right: 5px;" class="fa-solid fa-angles-down"></i>
+        <div>Transactions Volume</div>
+    </div>
+    <div style = "display: flex; justify-content: space-between; ">
+    <div></div>
+    <div>
+        <h4>Total Transactions Volume Processed</h4>
+        <p id="tra-p">This chat shows the total volume of paid transactions made using the Easypaisa portal in PKR.</p>
+    </div>
+    <span style = "padding: 30px; cursor: pointer"><i class="fa-solid fa-bars"></i></span>
+</div>
+
+    <canvas id="myChart" width="400" height="300"></canvas>
+    <div style="top: 126vh ; position: absolute; width: 98.8vw; display: flex" id="tr-ab">
+        <img id = "telenor" src="telenor.png" style="width: 25px; height: 25px; padding: none"><span
+            style="margin-left: 10px; margin-top: 3px">telenor</span>
+    </div>
+
+    <script>
+        var data = {
+            labels: [
+                "00:00", "00:01", "00:02", "00:03", "00:04", "00:05", "00:06", "00:07", "00:08",
+                "00:09", "00:10", "00:11", "00:12", "00:13", "00:14", "00:15", "00:16", "00:17", "00:18", "00:19", "00:20", "00:21"
+            ],
+            datasets: [{
+                label: 'Data Points',
+                data: [3250, 5900, 1900, 0, 1700, 700, 400, 1000, 10700, 7300, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                borderColor: 'blue',
+                backgroundColor: 'rgba(0, 0, 255, 0.2)', // Fill color
+                fill: true // Fill the area under the line
+            }]
+        };
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Total Paid Transaction Volume (PKR)'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 12000,
+                            stepSize: 500
+                        },
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time in Hours'
+                        },
+                        grid: {
+                            display: false // Set display to false to hide X-axis grid lines
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
